@@ -1,0 +1,64 @@
+version: 2
+
+sources:
+  - name: ecom_landing  # Source name
+    database: ecom_landing_db  # Snowflake Database name
+    schema: landing_schema  # Schema where raw tables are stored
+    tables:
+      - name: orders  # Raw Orders Table
+        description: "This table contains raw order data from e-commerce platform."
+        columns:
+          - name: order_id
+            description: "Unique identifier for each order"
+            tests:
+              - not_null
+              - unique
+          - name: customer_id
+            description: "Customer who placed the order"
+            tests:
+              - not_null
+
+      - name: customers  # Raw Customers Table
+        description: "This table contains customer details."
+        columns:
+          - name: customer_id
+            description: "Unique identifier for each customer"
+            tests:
+              - not_null
+              - unique
+          - name: email
+            description: "Email ID of the customer"
+            tests:
+              - not_null
+              - unique
+
+  - name: ecom_staging  # Source name
+    database: ecom_staging_db  # Snowflake Database name
+    schema: staging_schema  # Schema where raw tables are stored
+    tables:
+      - name: stg_orders  # Raw Orders Table
+        description: "This table contains raw order data from e-commerce platform."
+        columns:
+          - name: order_id
+            description: "Unique identifier for each order"
+            tests:
+              - not_null
+              - unique
+          - name: customer_id
+            description: "Customer who placed the order"
+            tests:
+              - not_null
+
+      - name: stg_customers  # Raw Customers Table
+        description: "This table contains customer details."
+        columns:
+          - name: customer_id
+            description: "Unique identifier for each customer"
+            tests:
+              - not_null
+              - unique
+          - name: email
+            description: "Email ID of the customer"
+            tests:
+              - not_null
+              - unique
